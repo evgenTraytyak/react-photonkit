@@ -49,13 +49,8 @@ export default class NavGroup extends Photon.Component {
 	render() {
 		const classes = this.getPtClassSet();
 		const className = classNames(this.props.className, classes);
-		let childNavs;
-
-		if (this.state.children) {
-			childNavs = this.state.children.map((child, index) => {
-				return this.renderNav(child, index);
-			});
-		}
+		const childrens = this.state.children;
+		const childNavs = React.Children.map(childrens, this.renderNav);
 
 		return (
 			<nav className={className} ref={this._node}>
